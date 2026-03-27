@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Library</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { 
+            /* Arxa fon rəngi və gradient */
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            min-height: 100vh;
+            padding: 50px 20px;
+            color: #f8fafc;
+        }
+
+        .header { text-align: center; margin-bottom: 60px; }
+        .header h1 { 
+            font-size: 42px; 
+            font-weight: 800; 
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+        .header p { color: #94a3b8; margin-top: 10px; font-size: 18px; }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 35px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .book-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: rgba(56, 189, 248, 0.5);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .book-img-container {
+            width: 100%;
+            height: 350px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .book-card:hover img { transform: scale(1.1); }
+
+        .book-info {
+            padding: 25px;
+            background: rgba(15, 23, 42, 0.6);
+            flex-grow: 1;
+        }
+
+        .book-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #f1f5f9;
+            line-height: 1.3;
+        }
+
+        .book-author {
+            color: #38bdf8;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-action { text-align: center; margin-top: 60px; }
+        
+        .logout-btn {
+            padding: 15px 40px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #f1f5f9;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #ef4444;
+            border-color: #ef4444;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <h1>Global Collection</h1>
+        <p>Premium Library</p>
+    </div>
+
+    <div class="container">
+        {% for book in books %}
+        <div class="book-card">
+            <div class="book-img-container">
+                <img src="{{ book[2] }}" alt="{{ book[0] }}" onerror="this.src='https://via.placeholder.com/300x450/1e293b/ffffff?text=No+Cover';">
+            </div>
+            <div class="book-info">
+                <div class="book-title">{{ book[0] }}</div>
+                <div class="book-author">{{ book[1] }}</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="footer-action">
+        <a href="/" class="logout-btn">Logout</a>
+    </div>
+</body>
+</html>
