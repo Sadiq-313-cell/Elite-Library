@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    username TEXT NOT NULL UNIQUE,        
+    password TEXT NOT NULL, 
+
+);-- database: c:\Users\user\Desktop\Book_project\database.db
+INSERT INTO users (username, password) 
+VALUES 
+('admin', 'admin12345'),
+('sadiq', 'P@ssw0rd'),
+('admin', 'admin'),
+('eli', 'alsfjasf'),
+('eli', 'alsfjasf'),
+('local', 'local\nlocal');
+SELECT * FROM users;
