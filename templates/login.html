@@ -6,56 +6,50 @@
     <title>Premium Library</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* CSS HİSSƏSİ: Səhifənin xarici görünüşü və dizaynı burada təyin olunur */
-        
-        /* Bütün elementlər üçün kənar boşluqları sıfırlayırıq və şrifti təyin edirik */
+        /* CSS: Səhifənin dizayn qaydaları */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
         body {
-            /* Arxa fona gradient (qaraltma) və kitabxana şəkli veririk */
+            /* Arxa fon şəkli və üzərində tünd təbəqə (overlay) */
             background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), 
                         url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
-            height: 100vh; /* Ekranın tam hündürlüyünü əhatə etsin */
-            display: flex; /* İçindəki kartı mərkəzə gətirmək üçün */
+            height: 100vh;
+            display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden; /* Səhifədə sürüşdürmə çubuğu (scroll) olmasın */
+            overflow: hidden;
         }
 
-        /* Giriş kartının (şüşə effekti) dizaynı */
+        /* Login Kartı: Şüşə (Glassmorphism) effekti */
         .login-card {
-            background: rgba(255, 255, 255, 0.05); /* Şəffaf ağ rəng */
-            backdrop-filter: blur(15px); /* Arxa fonun bulanıq (glassmorphism) görünməsi */
-            -webkit-backdrop-filter: blur(15px); /* Safari brauzeri üçün dəstək */
-            border: 1px solid rgba(255, 255, 255, 0.1); /* İncə çərçivə */
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px); /* Arxa fonun bulanıqlaşdırılması */
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 50px 40px;
             border-radius: 25px;
             width: 100%;
             max-width: 400px;
             text-align: center;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3); /* Kölgə effekti */
-            animation: fadeIn 1s ease-out; /* Səhifə açılanda yuxarıdan aşağı yavaşca gəlsin */
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-out; /* Səhifə açılanda yaranan animasiya */
         }
 
-        /* Giriş animasiyası: Kartın aşağıdan yuxarı gəlmə effekti */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         h2 { color: #fff; font-size: 28px; font-weight: 600; margin-bottom: 10px; letter-spacing: 1px; }
-
         p.subtitle { color: #94a3b8; font-size: 14px; margin-bottom: 30px; }
-
-        /* Giriş xanalarının qruplaşdırılması (position: relative göz işarəsinin daxildə qalması üçündür) */
         .input-group { margin-bottom: 20px; text-align: left; position: relative; }
 
+        /* Giriş sahələri (Inputlar) */
         input {
             width: 100%;
             padding: 15px;
@@ -64,17 +58,17 @@
             border-radius: 12px;
             color: #fff;
             outline: none;
-            transition: 0.3s; /* Effektlərin rəvan keçidi üçün */
+            transition: 0.3s;
         }
 
-        /* Yazı yazılan xanaya klikləyəndə (focus) rəngin dəyişməsi */
+        /* Inputa klikləyəndə yaranan rəng dəyişimi */
         input:focus {
             background: rgba(255, 255, 255, 0.12);
             border-color: #38bdf8;
             box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
         }
 
-        /* Göz işarəsinin input daxilində sağ tərəfdə yerləşməsi */
+        /* Parolu göstər/gizlə ikonu */
         .eye-icon {
             position: absolute;
             right: 15px;
@@ -86,7 +80,7 @@
         }
         .eye-icon:hover { color: #38bdf8; }
 
-        /* Giriş düyməsinin rəngli (gradient) dizaynı */
+        /* Əsas düymə (Login/Register) */
         button {
             width: 100%;
             padding: 15px;
@@ -101,14 +95,13 @@
             margin-top: 10px;
         }
 
-        /* Düymənin üzərinə gələndə yuxarı qalxma effekti */
         button:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3);
             filter: brightness(1.1);
         }
 
-        /* Xəta mesajı pəncərəsinin dizaynı (Flask-dan gəlir) */
+        /* Xəta mesajı bloku */
         .error {
             color: #fb7185;
             background: rgba(251, 113, 133, 0.1);
@@ -117,13 +110,22 @@
             margin-top: 20px;
             font-size: 14px;
         }
+
+        .toggle-link {
+            margin-top: 15px;
+            display: block;
+            color: #38bdf8;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
     <div class="login-card">
         <h2 id="main-title">Welcome</h2>
-        <p class="subtitle">Please enter credentials</p>
+        <p class="subtitle" id="main-subtitle">Please enter credentials</p>
         
         <form method="POST" id="loginForm">
             <div class="input-group">
@@ -133,7 +135,8 @@
                 <input type="password" name="password" id="password" placeholder="Password" required>
                 <i class="fa-solid fa-eye eye-icon" id="togglePassword"></i>
             </div>
-            <button type="submit" id="loginBtn">Login</button>
+            <button type="submit" name="action" value="login" id="loginBtn">Login</button>
+            <a onclick="switchToSignup()" id="toggleBtn" class="toggle-link">Don't have an account? Sign Up</a>
         </form>
 
         {% if error %}
@@ -142,44 +145,58 @@
     </div>
 
     <script>
-        // 1. Səhifə tam yüklənəndə brauzerin konsoluna qeyd atırıq (yoxlamaq üçün)
+        // JAVASCRIPT: Səhifənin interaktivliyi burada idarə olunur
+        
         window.onload = function() {
             console.log("Library System: JavaScript uğurla yükləndi.");
         };
 
         const loginForm = document.getElementById('loginForm');
         const loginBtn = document.getElementById('loginBtn');
+        const mainTitle = document.getElementById('main-title');
+        const mainSubtitle = document.getElementById('main-subtitle');
+        const toggleBtn = document.getElementById('toggleBtn');
 
-        // 2. Login düyməsi basılanda baş verənlər
+        // Login və Signup rejimləri arasında keçid funksiyası
+        function switchToSignup() {
+            if (loginBtn.value === "login") {
+                mainTitle.innerText = "Sign Up";
+                mainSubtitle.innerText = "Create your account";
+                loginBtn.innerText = "Register Now";
+                loginBtn.value = "signup";
+                loginBtn.style.background = "linear-gradient(90deg, #10b981, #3b82f6)";
+                toggleBtn.innerText = "Already have an account? Login";
+            } else {
+                mainTitle.innerText = "Welcome";
+                mainSubtitle.innerText = "Please enter credentials";
+                loginBtn.innerText = "Login";
+                loginBtn.value = "login";
+                loginBtn.style.background = "linear-gradient(90deg, #38bdf8, #818cf8)";
+                toggleBtn.innerText = "Don't have an account? Sign Up";
+            }
+        }
+
+        // Forma göndəriləndə (submit) düyməni dondururuq (Brute Force-un vizual olaraq qarşısını almaq üçün)
         loginForm.addEventListener('submit', function(event) {
-            // Düymənin yazısını dəyişərək istifadəçiyə 'gözlə' mesajı veririk
             loginBtn.innerText = "Processing...";
             loginBtn.style.opacity = "0.7";
             loginBtn.style.cursor = "not-allowed";
-
-            // Daxil edilən istifadəçi adını konsola yazdırırıq
-            const user = document.getElementById('username').value;
-            console.log("Giriş cəhdi edən istifadəçi: " + user);
         });
 
-        // 3. Əgər ekranda xəta mesajı varsa, konsola bildiririk
-        const errorMessage = document.querySelector('.error');
-        if (errorMessage) {
-            console.log("Xəta baş verdi: Yanlış məlumatlar daxil edilib.");
-        }
-
-        // 4. GÖZ İŞARƏSİ FUNKSİYASI: Parolu göstər/gizlə
+        // Parol gizlətmə/göstərmə funksiyası
         const togglePassword = document.getElementById('togglePassword');
         const passwordInput = document.getElementById('password');
 
         togglePassword.addEventListener('click', function() {
-            // Şifrənin tipini yoxlayırıq: Əgər 'password' (gizli) isə 'text' (açıq) edirik, və əksinə
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
-            
-            // Göz ikonunu dəyişirik (açıq göz ikonundan xətt çəkilmiş göz ikonuna keçid)
-            this.classList.toggle('fa-eye-slash');
+            this.classList.toggle('fa-eye-slash'); // İkonu dəyişir
         });
+
+        // Əgər qeydiyyat uğurlu olubsa və ya istifadəçi artıq varsa, avtomatik Signup rejimində qal
+        {% if error and ("successful" in error or "exists" in error) %}
+            switchToSignup();
+        {% endif %}
     </script>
 
 </body>

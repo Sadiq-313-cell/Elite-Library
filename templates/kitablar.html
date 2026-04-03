@@ -5,20 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elite Library</title>
     <style>
+        /* Ümumi sıfırlama və font təyini */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         
         body { 
-            /* Arxa fon rəngi və gradient */
+            /* Arka fon üçün tünd göy gradient - kitabxana atmosferi yaradır */
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             min-height: 100vh;
             padding: 50px 20px;
             color: #f8fafc;
         }
 
+        /* Başlıq hissəsi */
         .header { text-align: center; margin-bottom: 60px; }
         .header h1 { 
             font-size: 42px; 
             font-weight: 800; 
+            /* Mətnə rəngli gradient vermək üçün texnika */
             background: linear-gradient(to right, #38bdf8, #818cf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -26,31 +29,36 @@
         }
         .header p { color: #94a3b8; margin-top: 10px; font-size: 18px; }
 
+        /* Kitab kartlarının yerləşdiyi şəbəkə (Grid) */
         .container {
             display: grid;
+            /* Responsiv dizayn: Ekran ölçüsünə görə kitab sayını avtomatik tənzimləyir */
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 35px;
             max-width: 1300px;
             margin: 0 auto;
         }
 
+        /* Fərdi kitab kartı */
         .book-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.03); /* Şüşə effekti üçün şəffaf fon */
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             overflow: hidden;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px); /* Arxa fonu bulandıran premium effekt */
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
         }
 
+        /* Kartın üzərinə gələndə qalxma animasiyası */
         .book-card:hover {
             transform: translateY(-15px) scale(1.02);
             border-color: rgba(56, 189, 248, 0.5);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
+        /* Kitab şəkli üçün konteyner */
         .book-img-container {
             width: 100%;
             height: 350px;
@@ -61,12 +69,14 @@
         .book-img-container img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* Şəkli əzilmədən sahəyə sığdırır */
             transition: 0.5s;
         }
 
+        /* Hover zamanı şəklin böyüməsi effekti */
         .book-card:hover img { transform: scale(1.1); }
 
+        /* Kitabın adı və müəllifi olan hissə */
         .book-info {
             padding: 25px;
             background: rgba(15, 23, 42, 0.6);
@@ -89,6 +99,7 @@
             letter-spacing: 1px;
         }
 
+        /* Səhifənin aşağı hissəsi (Çıxış düyməsi) */
         .footer-action { text-align: center; margin-top: 60px; }
         
         .logout-btn {
@@ -102,6 +113,7 @@
             transition: 0.3s;
         }
 
+        /* Çıxış düyməsinə qırmızı təhlükə rəngi effekti */
         .logout-btn:hover {
             background: #ef4444;
             border-color: #ef4444;
